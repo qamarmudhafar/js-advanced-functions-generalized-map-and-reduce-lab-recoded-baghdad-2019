@@ -1,22 +1,29 @@
 // Add your functions here
-function map(src, cb) {
-  let r = []
-
-  for (let i = 0; i < src.length; i++) {
-    let theElement = src[i]
-    r.push(cb(theElement))
+let map= function(arr,callback){
+  let newarr=[];
+  for (let i=0;i<arr.length;i++){
+    newarr.push(callback(arr[i]));
   }
-
-  return r;
+  return newarr;
 }
 
-function reduce(src, cb, starting){
-  let r = (!!starting) ? starting : src[0]
-  let i = (!!starting) ? 0 : 1
 
-  for (; i < src.length; i++) {
-    r = cb(src[i], r)
+let reduce = function(arr,callback,startpoint=0){
+  let tem;
+  if(startpoint){
+    tem=startpoint
   }
-
-  return r;
+  else
+  {tem=arr[0]}
+  let i;
+  if(startpoint){
+    i=0;
+  }
+  else{
+    i=1;
+  }
+  for(;i<arr.length;i++){
+    tem=callback(tem,arr[i])
+  }
+  return tem;
 }
